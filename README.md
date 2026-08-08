@@ -27,6 +27,9 @@ Clone the repository:
 ```bash
 git clone https://github.com/ronyraphel/notabene.git
 ```
+<p align="center">
+  <img src="assets/notabene2.jpg.png"/>
+</p>
 
 Open `index.html` in your browser.
 
