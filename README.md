@@ -1,5 +1,7 @@
 # 📖 NotaBene
-
+<p align="center">
+  <img src="assets/notabene1" width="600"/>
+</p>
 A clean, newspaper-inspired journal application built using HTML, CSS, and JavaScript.
 
 ## Features
