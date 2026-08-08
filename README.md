@@ -23,7 +23,7 @@ A clean, newspaper-inspired journal application built using HTML, CSS, and JavaS
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/notabene.git
+git clone https://github.com/ronyraphel/notabene.git
 ```
 
 Open `index.html` in your browser.
