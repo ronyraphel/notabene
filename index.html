@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NotaBene</title>
+<style>
+  :root{
+    --paper:#F6F1E4;
+    --paper-line:#E4DAC0;
+    --ink:#2A2418;
+    --ink-soft:#6B6152;
+    --rule:#C9BC9C;
+    --rule-light:#E4DAC0;
+    --accent:#7A4A2B;
+    --margin-line:#C99A8A;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      repeating-linear-gradient(
+        var(--paper) 0px,
+        var(--paper) 31px,
+        var(--paper-line) 32px
+      );
+    color:var(--ink);
+    font-family:"Times New Roman", Times, Georgia, serif;
+  }
+  .wrap{
+    max-width:760px;
+    margin:0 auto;
+    padding:0 24px 80px 64px;
+    position:relative;
+  }
+  .wrap::before{
+    content:"";
+    position:absolute;
+    top:0;
+    bottom:0;
+    left:40px;
+    width:1px;
+    background:var(--margin-line);
+    opacity:0.55;
+  }
+  /* Masthead */
+  header.masthead{
+    text-align:center;
+    padding:48px 24px 16px;
+  }
+  .kicker{
+    letter-spacing:0.3em;
+    font-size:12px;
+    font-style:italic;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:0 0 10px;
+  }
+  h1.title{
+    font-size:52px;
+    font-weight:bold;
+    font-style:italic;
+    letter-spacing:0.5px;
+    margin:0;
+    line-height:1.05;
+  }
+  .tagline{
+    font-style:italic;
+    font-size:15px;
+    color:var(--ink-soft);
+    margin:10px 0 0;
+  }
+  .rule-thick{ border:none; border-top:3px solid var(--ink); margin:20px 0 4px; }
+  .rule-thin{ border:none; border-top:1px solid var(--ink); margin:0 0 18px; }
+  .meta-row{
+    display:flex;
+    justify-content:space-between;
+    font-size:12px;
+    color:var(--ink-soft);
+    padding-bottom:14px;
+    border-bottom:1px solid var(--rule);
+  }
+  nav.masthead-nav{
+    display:flex;
+    justify-content:center;
+    gap:36px;
+    padding:14px 0;
+    border-bottom:1px solid var(--rule);
+    margin-bottom:36px;
+  }
+  nav.masthead-nav a{
+    font-size:13px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink);
+    text-decoration:none;
+    cursor:pointer;
+    padding-bottom:4px;
+    border-bottom:2px solid transparent;
+  }
+  nav.masthead-nav a.active{
+    border-bottom-color:var(--accent);
+    color:var(--accent);
+  }
+  nav.masthead-nav a:hover{ color:var(--accent); }
+
+  /* Views */
+  .view{ display:none; }
+  .view.active{ display:block; }
+
+  /* Post list */
+  .post-entry{
+    padding:26px 0;
+    border-bottom:1px solid var(--rule-light);
+  }
+  .post-entry:first-child{ padding-top:0; }
+  .post-headline{
+    font-size:28px;
+    font-weight:bold;
+    margin:0 0 8px;
+    cursor:pointer;
+    line-height:1.2;
+  }
+  .post-headline:hover{ color:var(--accent); }
+  .post-byline{
+    font-size:12px;
+    color:var(--ink-soft);
+    font-style:italic;
+    margin:0 0 10px;
+  }
+  .post-excerpt{
+    font-size:16px;
+    line-height:1.65;
+    color:var(--ink);
+    margin:0 0 10px;
+  }
+  .read-more{
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--accent);
+    text-decoration:none;
+    cursor:pointer;
+    border-bottom:1px solid var(--accent);
+    padding-bottom:1px;
+  }
+  .empty-state{
+    text-align:center;
+    padding:70px 20px;
+    color:var(--ink-soft);
+  }
+  .empty-state h2{
+    font-weight:normal;
+    font-style:italic;
+    font-size:22px;
+    margin-bottom:8px;
+  }
+  .empty-state a{ color:var(--accent); cursor:pointer; }
+
+  /* Article view */
+  .article-head{ margin-bottom:28px; }
+  .article-title{
+    font-size:38px;
+    font-weight:bold;
+    line-height:1.15;
+    margin:0 0 12px;
+  }
+  .article-byline{
+    font-size:13px;
+    color:var(--ink-soft);
+    font-style:italic;
+    border-top:1px solid var(--rule);
+    border-bottom:1px solid var(--rule);
+    padding:8px 0;
+  }
+  .article-body{
+    font-size:19px;
+    line-height:1.75;
+    color:var(--ink);
+  }
+  .article-body p{ margin:0 0 20px; }
+  .article-body p:first-of-type::first-letter{
+    float:left;
+    font-size:64px;
+    line-height:0.8;
+    font-weight:bold;
+    padding:6px 8px 0 0;
+    color:var(--accent);
+  }
+  .article-actions{
+    margin-top:32px;
+    padding-top:16px;
+    border-top:1px solid var(--rule);
+    display:flex;
+    gap:20px;
+  }
+  .text-btn{
+    background:none;
+    border:none;
+    font-family:inherit;
+    font-size:13px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    cursor:pointer;
+    padding:0;
+  }
+  .text-btn:hover{ color:var(--accent); }
+  .text-btn.danger:hover{ color:#8a2a2a; }
+
+  /* Editor */
+  .editor-label{
+    display:block;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+    margin:22px 0 6px;
+  }
+  .editor-label:first-child{ margin-top:0; }
+  input.field, textarea.field{
+    width:100%;
+    font-family:"Times New Roman", Times, Georgia, serif;
+    border:1px solid var(--rule);
+    background:#fff;
+    padding:12px 14px;
+    color:var(--ink);
+  }
+  input.field{ font-size:24px; font-weight:bold; }
+  input.field:focus, textarea.field:focus{
+    outline:none;
+    border-color:var(--accent);
+  }
+  textarea.field{
+    font-size:17px;
+    line-height:1.6;
+    min-height:340px;
+    resize:vertical;
+  }
+  .field-hint{
+    font-size:11px;
+    color:var(--ink-soft);
+    margin-top:4px;
+  }
+  .editor-actions{
+    margin-top:26px;
+    display:flex;
+    gap:14px;
+  }
+  .btn{
+    font-family:inherit;
+    font-size:13px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:11px 26px;
+    cursor:pointer;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:var(--paper);
+  }
+  .btn:hover{ background:#333; }
+  .btn.secondary{
+    background:transparent;
+    color:var(--ink);
+  }
+  .btn.secondary:hover{ background:var(--rule-light); }
+
+  footer{
+    text-align:center;
+    padding:30px 0 0;
+    margin-top:40px;
+    border-top:1px solid var(--rule);
+    font-size:11px;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+
+  #save-status{
+    font-size:11px;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+
+  @media (max-width:600px){
+    h1.title{ font-size:38px; }
+    .post-headline{ font-size:22px; }
+    .article-title{ font-size:28px; }
+    .article-body{ font-size:17px; }
+    nav.masthead-nav{ gap:20px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <p class="kicker">A commonplace book</p>
+    <h1 class="title">NotaBene</h1>
+    <p class="tagline">Note well &mdash; a private journal of thoughts worth keeping</p>
+  </header>
+  <hr class="rule-thick">
+  <hr class="rule-thin">
+  <div class="meta-row">
+    <span id="today-date"></span>
+    <span id="post-count-label">0 entries recorded</span>
+  </div>
+
+  <nav class="masthead-nav">
+    <a id="nav-home" class="active">Journal</a>
+    <a id="nav-new">New entry</a>
+  </nav>
+
+  <!-- HOME VIEW -->
+  <div id="view-home" class="view active">
+    <div id="post-list"></div>
+    <div id="empty-state" class="empty-state" style="display:none;">
+      <h2>The page is blank.</h2>
+      <p>Your journal is waiting for its first entry.</p>
+      <a id="empty-write-link">Write the first entry &rarr;</a>
+    </div>
+  </div>
+
+  <!-- ARTICLE VIEW -->
+  <div id="view-article" class="view">
+    <a id="back-to-front" class="read-more" style="cursor:pointer;">&larr; Back to journal</a>
+    <div class="article-head" style="margin-top:20px;">
+      <h1 class="article-title" id="article-title"></h1>
+      <p class="article-byline" id="article-byline"></p>
+    </div>
+    <div class="article-body" id="article-body"></div>
+    <div class="article-actions">
+      <button class="text-btn" id="edit-post-btn">Edit entry</button>
+      <button class="text-btn danger" id="delete-post-btn">Delete entry</button>
+    </div>
+  </div>
+
+  <!-- EDITOR VIEW -->
+  <div id="view-editor" class="view">
+    <a id="back-from-editor" class="read-more" style="cursor:pointer;">&larr; Back to journal</a>
+    <label class="editor-label" style="margin-top:20px;">Title</label>
+    <input type="text" class="field" id="edit-title" placeholder="Give this entry a title">
+
+    <label class="editor-label">Written by</label>
+    <input type="text" class="field" id="edit-author" style="font-size:16px; font-weight:normal;" placeholder="Your name">
+
+    <label class="editor-label">Entry</label>
+    <textarea class="field" id="edit-body" placeholder="Write your entry here. Leave a blank line between paragraphs."></textarea>
+    <p class="field-hint">Separate paragraphs with a blank line.</p>
+
+    <div class="editor-actions">
+      <button class="btn" id="publish-btn">Save entry</button>
+      <button class="btn secondary" id="cancel-edit-btn">Cancel</button>
+      <span id="save-status"></span>
+    </div>
+  </div>
+
+  <footer>
+    NotaBene &mdash; a quiet place to keep your journal
+  </footer>
+</div>
+
+<script>
+let posts = [];
+let currentPostId = null;
+let editingPostId = null;
+
+const homeView = document.getElementById('view-home');
+const articleView = document.getElementById('view-article');
+const editorView = document.getElementById('view-editor');
+const navHome = document.getElementById('nav-home');
+const navNew = document.getElementById('nav-new');
+
+document.getElementById('today-date').textContent = new Date().toLocaleDateString('en-US', {
+  weekday:'long', year:'numeric', month:'long', day:'numeric'
+});
+
+function switchView(view){
+  [homeView, articleView, editorView].forEach(v => v.classList.remove('active'));
+  view.classList.add('active');
+  navHome.classList.toggle('active', view === homeView);
+  navNew.classList.toggle('active', view === editorView && editingPostId === null);
+  window.scrollTo(0,0);
+}
+
+function escapeHtml(str){
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
+}
+
+function formatDate(iso){
+  return new Date(iso).toLocaleDateString('en-US', { year:'numeric', month:'long', day:'numeric' });
+}
+
+function paragraphsToHtml(text){
+  return text.split(/\n\s*\n/).map(p => p.trim()).filter(Boolean)
+    .map(p => `<p>${escapeHtml(p).replace(/\n/g,'<br>')}</p>`).join('');
+}
+
+function excerptOf(text, len){
+  const clean = text.replace(/\s+/g,' ').trim();
+  return clean.length > len ? clean.slice(0,len).trim() + '…' : clean;
+}
+
+async function loadPosts(){
+  try{
+    const result = await window.storage.get('notabene:entries');
+    posts = result && result.value ? JSON.parse(result.value) : [];
+  }catch(e){
+    posts = [];
+  }
+  posts.sort((a,b) => new Date(b.date) - new Date(a.date));
+  renderList();
+}
+
+async function savePosts(){
+  const status = document.getElementById('save-status');
+  try{
+    await window.storage.set('notabene:entries', JSON.stringify(posts));
+    if(status) status.textContent = 'Saved.';
+  }catch(e){
+    if(status) status.textContent = 'Could not save. Try again.';
+  }
+}
+
+function renderList(){
+  const list = document.getElementById('post-list');
+  const empty = document.getElementById('empty-state');
+  document.getElementById('post-count-label').textContent =
+    posts.length + (posts.length === 1 ? ' entry recorded' : ' entries recorded');
+
+  if(posts.length === 0){
+    list.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+  list.innerHTML = posts.map(p => `
+    <div class="post-entry">
+      <h2 class="post-headline" data-id="${p.id}">${escapeHtml(p.title)}</h2>
+      <p class="post-byline">By ${escapeHtml(p.author || 'Anonymous')} &middot; ${formatDate(p.date)}</p>
+      <p class="post-excerpt">${escapeHtml(excerptOf(p.body, 220))}</p>
+      <a class="read-more" data-id="${p.id}">Read entry &rarr;</a>
+    </div>
+  `).join('');
+
+  list.querySelectorAll('[data-id]').forEach(el => {
+    el.addEventListener('click', () => openArticle(el.getAttribute('data-id')));
+  });
+}
+
+function openArticle(id){
+  const post = posts.find(p => p.id === id);
+  if(!post) return;
+  currentPostId = id;
+  document.getElementById('article-title').textContent = post.title;
+  document.getElementById('article-byline').textContent =
+    `${post.author || 'Anonymous'} — ${formatDate(post.date)}`;
+  document.getElementById('article-body').innerHTML = paragraphsToHtml(post.body);
+  switchView(articleView);
+}
+
+function openEditor(post){
+  editingPostId = post ? post.id : null;
+  document.getElementById('edit-title').value = post ? post.title : '';
+  document.getElementById('edit-author').value = post ? post.author : '';
+  document.getElementById('edit-body').value = post ? post.body : '';
+  document.getElementById('save-status').textContent = '';
+  switchView(editorView);
+}
+
+navHome.addEventListener('click', () => switchView(homeView));
+navNew.addEventListener('click', () => openEditor(null));
+document.getElementById('empty-write-link').addEventListener('click', () => openEditor(null));
+document.getElementById('back-to-front').addEventListener('click', () => switchView(homeView));
+document.getElementById('back-from-editor').addEventListener('click', () => switchView(homeView));
+document.getElementById('cancel-edit-btn').addEventListener('click', () => switchView(homeView));
+
+document.getElementById('edit-post-btn').addEventListener('click', () => {
+  const post = posts.find(p => p.id === currentPostId);
+  if(post) openEditor(post);
+});
+
+document.getElementById('delete-post-btn').addEventListener('click', async () => {
+  if(!confirm('Delete this entry? This cannot be undone.')) return;
+  posts = posts.filter(p => p.id !== currentPostId);
+  await savePosts();
+  renderList();
+  switchView(homeView);
+});
+
+document.getElementById('publish-btn').addEventListener('click', async () => {
+  const title = document.getElementById('edit-title').value.trim();
+  const author = document.getElementById('edit-author').value.trim();
+  const body = document.getElementById('edit-body').value.trim();
+
+  if(!title || !body){
+    document.getElementById('save-status').textContent = 'Add a title and some writing before saving.';
+    return;
+  }
+
+  if(editingPostId){
+    const post = posts.find(p => p.id === editingPostId);
+    post.title = title;
+    post.author = author;
+    post.body = body;
+  }else{
+    posts.unshift({
+      id: 'post-' + Date.now() + '-' + Math.random().toString(36).slice(2,7),
+      title, author, body,
+      date: new Date().toISOString()
+    });
+  }
+  await savePosts();
+  renderList();
+  switchView(homeView);
+});
+
+loadPosts();
+</script>
+</body>
+</html>
