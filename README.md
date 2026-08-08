@@ -1,6 +1,6 @@
 # 📖 NotaBene
 <p align="center">
-  <img src="assets/notabene1.jpg" width="600"/>
+  <img src="assets/notabene1.jpg" width="250"/>
 </p>
 A clean, newspaper-inspired journal application built using HTML, CSS, and JavaScript.
 
