@@ -10,6 +10,11 @@ A quiet, newspaper-inspired journal for the web — built with nothing but HTML,
 
 <br/>
 
+
+</div>
+
+<br/>
+
 ## About
 
 Sometimes you have a thought you don't want to forget, a quote that stays with you, or a day that's worth writing about. **NotaBene** is a simple place to keep those things, without distractions or clutter.
