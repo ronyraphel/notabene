@@ -10,15 +10,6 @@ A quiet, newspaper-inspired journal for the web — built with nothing but HTML,
 
 <br/>
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![No Backend](https://img.shields.io/badge/Backend-None%20Needed-6B4F3B?style=for-the-badge)
-
-</div>
-
-<br/>
-
 ## About
 
 Sometimes you have a thought you don't want to forget, a quote that stays with you, or a day that's worth writing about. **NotaBene** is a simple place to keep those things, without distractions or clutter.
