@@ -1,49 +1,99 @@
+<div align="center">
+
 # 📖 NotaBene
+
+### *Note well.*
+
+A quiet, newspaper-inspired journal for the web — built with nothing but HTML, CSS, and JavaScript.
+
+<img src="assets/notabene1.jpg" width="280" alt="NotaBene preview"/>
+
+<br/>
+
+![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
+![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![No Backend](https://img.shields.io/badge/Backend-None%20Needed-6B4F3B?style=for-the-badge)
+
+</div>
+
+<br/>
+
+## About
+
+Sometimes you have a thought you don't want to forget, a quote that stays with you, or a day that's worth writing about. **NotaBene** is a simple place to keep those things, without distractions or clutter.
+
+Whether it's an idea that came to you on the way home, notes from a book you're reading, or something that happened today, you can write it down and come back to it whenever you want. Over time, it becomes a collection of your thoughts, memories, and moments that mattered to you.
+
+There's no audience, no likes, and nothing to keep up with. Just a quiet space to write, reflect, and save the things you want to remember.
+
+<br/>
+
+## ✨ Features
+
+| | |
+|---|---|
+| 📝 **Create entries** | Write freely, whenever a thought is worth keeping |
+| 📚 **View all entries** | Browse your journal like the pages of a diary |
+| ✏️ **Edit entries** | Come back and revise anything, anytime |
+| 🗑 **Delete entries** | Let go of what no longer needs keeping |
+| 💾 **Auto-save** | Every entry is saved automatically using browser storage |
+| 📱 **Responsive layout** | Reads just as well on a phone as on a desktop |
+| 🎨 **Vintage newspaper interface** | Times New Roman, hairline rules, and a warm paper backdrop |
+
+<br/>
+
 <p align="center">
-  <img src="assets/notabene1.jpg" width="250"/>
+  <img src="assets/notabene2.jpg.png" width="600" alt="NotaBene journal view"/>
 </p>
-A clean, newspaper-inspired journal application built using HTML, CSS, and JavaScript.
 
-## Features
+<br/>
 
-- 📝 Create journal entries
-- 📚 View all entries
-- ✏️ Edit existing entries
-- 🗑 Delete entries
-- 💾 Automatically saves data using browser storage
-- 📱 Responsive layout
-- 🎨 Vintage newspaper-inspired interface
+## 🛠 Technologies Used
 
-## Technologies Used
+- **HTML5** — structure and semantic markup
+- **CSS3** — vintage editorial styling, layout, and responsiveness
+- **Vanilla JavaScript** — entry creation, editing, and persistence
 
-- HTML5
-- CSS3
-- Vanilla JavaScript
+No frameworks, no build tools, no dependencies — just open it and start writing.
 
-## Getting Started
+<br/>
+
+## 🚀 Getting Started
 
 Clone the repository:
 
 ```bash
 git clone https://github.com/ronyraphel/notabene.git
 ```
-<p align="center">
-  <img src="assets/notabene2.jpg.png"/>
-</p>
 
-Open `index.html` in your browser.
+Then simply open `index.html` in your browser.
 
-No installation required.
+> No installation, no server, no configuration required.
 
-## Future Improvements
+<br/>
 
-- Search entries
-- Categories & tags
-- Dark mode
-- Rich text editor
-- Markdown support
-- Cloud synchronization
+## 🗺 Roadmap
 
-## Author
+Planned improvements for future versions:
 
-Rony Raphel
+- [ ] 🔍 Search entries
+- [ ] 🏷 Categories & tags
+- [ ] 🌙 Dark mode
+- [ ] 🖋 Rich text editor
+- [ ] 📄 Markdown support
+- [ ] ☁️ Cloud synchronization
+
+<br/>
+
+## 👤 Author
+
+**Rony Raphel**
+
+<br/>
+
+<div align="center">
+
+*NotaBene — a quiet place to keep the things worth remembering.*
+
+</div>
