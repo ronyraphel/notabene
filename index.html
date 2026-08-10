@@ -108,6 +108,26 @@
   .view{ display:none; }
   .view.active{ display:block; }
 
+  /* Landing */
+  .landing-hero{
+    padding:28px 6px 40px;
+    text-align:center;
+  }
+  .landing-lede{
+    font-size:26px;
+    font-style:italic;
+    margin:0 0 22px;
+  }
+  .landing-body{
+    font-size:18px;
+    line-height:1.75;
+    text-align:left;
+    max-width:620px;
+    margin:0 auto 20px;
+    color:var(--ink);
+  }
+  .landing-body em{ color:var(--accent); font-style:italic; }
+
   /* Post list */
   .post-entry{
     padding:26px 0;
@@ -306,12 +326,37 @@
   </div>
 
   <nav class="masthead-nav">
-    <a id="nav-home" class="active">Journal</a>
+    <a id="nav-landing" class="active">Home</a>
+    <a id="nav-home">Journal</a>
     <a id="nav-new">New entry</a>
   </nav>
 
+  <!-- LANDING VIEW -->
+  <div id="view-landing" class="view active">
+    <div class="landing-hero">
+      <p class="landing-lede">This is your online diary.</p>
+      <p class="landing-body">
+        A fleeting thought before it slips away, a line worth remembering, a day
+        worth setting down &mdash; whatever crosses your mind, just <em>notabene</em> it.
+        NotaBene is a quiet place on the web to keep the things you'd otherwise forget.
+      </p>
+      <p class="landing-body">
+        Had an idea mid-commute? NotaBene it before it's gone. Finished a book that
+        changed how you think? NotaBene the passage that stayed with you. Some days
+        deserve more than a memory &mdash; notabene them while they're still fresh.
+        Over time, your notabenes become a running record of a mind at work: half
+        essay, half diary, entirely yours.
+      </p>
+      <p class="landing-body">
+        No feeds, no likes, no audience &mdash; just a page, a pen, and whatever
+        you decide is worth noting well.
+      </p>
+      <button class="btn" id="get-started-btn" style="margin-top:8px;">Get started</button>
+    </div>
+  </div>
+
   <!-- HOME VIEW -->
-  <div id="view-home" class="view active">
+  <div id="view-home" class="view">
     <div id="post-list"></div>
     <div id="empty-state" class="empty-state" style="display:none;">
       <h2>The page is blank.</h2>
@@ -364,9 +409,11 @@ let posts = [];
 let currentPostId = null;
 let editingPostId = null;
 
+const landingView = document.getElementById('view-landing');
 const homeView = document.getElementById('view-home');
 const articleView = document.getElementById('view-article');
 const editorView = document.getElementById('view-editor');
+const navLanding = document.getElementById('nav-landing');
 const navHome = document.getElementById('nav-home');
 const navNew = document.getElementById('nav-new');
 
@@ -375,9 +422,10 @@ document.getElementById('today-date').textContent = new Date().toLocaleDateStrin
 });
 
 function switchView(view){
-  [homeView, articleView, editorView].forEach(v => v.classList.remove('active'));
+  [landingView, homeView, articleView, editorView].forEach(v => v.classList.remove('active'));
   view.classList.add('active');
-  navHome.classList.toggle('active', view === homeView);
+  navLanding.classList.toggle('active', view === landingView);
+  navHome.classList.toggle('active', view === homeView || view === articleView);
   navNew.classList.toggle('active', view === editorView && editingPostId === null);
   window.scrollTo(0,0);
 }
@@ -469,8 +517,10 @@ function openEditor(post){
   switchView(editorView);
 }
 
+navLanding.addEventListener('click', () => switchView(landingView));
 navHome.addEventListener('click', () => switchView(homeView));
 navNew.addEventListener('click', () => openEditor(null));
+document.getElementById('get-started-btn').addEventListener('click', () => switchView(homeView));
 document.getElementById('empty-write-link').addEventListener('click', () => openEditor(null));
 document.getElementById('back-to-front').addEventListener('click', () => switchView(homeView));
 document.getElementById('back-from-editor').addEventListener('click', () => switchView(homeView));
