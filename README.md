@@ -57,6 +57,9 @@ No frameworks, no build tools, no dependencies — just open it and start writin
 
 ## 🚀 Getting Started
 
+Visit the website here!
+[Click Here](https://ronyraphel.github.io/notabene/)
+
 Clone the repository:
 
 ```bash
